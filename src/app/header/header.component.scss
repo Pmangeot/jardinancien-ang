@@ -1,0 +1,93 @@
+
+@import '../../styles/variables';
+
+// header.component.scss
+header {
+  background-image: url("../../assets/img/tomatoesheadertop.jpg");
+  background-size: cover;
+  background-position: 50% 100%;
+  text-align: center;
+  color: $color-title;
+  font-family: $font-title;
+
+  h1 {
+    text-shadow: 1px 1px 1px $color-title-shadow;
+    font-size: 5rem;
+    padding: 3rem 0;
+  }
+}
+
+nav {
+  width: 65%;
+  background-color: $color-navbar;
+  border-radius: 0.7rem 0.7rem 0 0;
+  display: flex;
+  justify-content: space-evenly;
+
+  a {
+    width: 50%;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding: 0.5rem 0;
+    color: white;
+    text-shadow: 6px rgb(0, 0, 0);
+    border-left: 1px solid $color-separator;
+    font-family: $font-title;
+
+    &:first-child {
+      border-left: none;
+    }
+
+    &:hover {
+      transition: 0.3s;
+      background-color: $color-navbarhover;
+    }
+
+    &:first-child:hover {
+      border-radius: 0.7rem 0 0 0;
+    }
+
+    &:last-child:hover {
+      border-radius: 0 0.7rem 0 0;
+    }
+  }
+}
+
+.lowheader {
+  background-image: url("../../assets/img/tomatoesheaderbottom.jpg");
+  background-size: cover;
+  background-position: 50% 0%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Media Queries */
+@media screen and (max-width: 910px) {
+  nav {
+    width: 100%;
+    border-radius: 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .lowheader {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 4;
+  }
+
+  h1 {
+    font-size: 3rem;
+    padding: 1rem;
+  }
+
+  a:first-child:hover,
+  a:last-child:hover {
+    border-radius: 0;
+  }
+}

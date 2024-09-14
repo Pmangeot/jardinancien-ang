@@ -1,0 +1,24 @@
+// styles.scss
+
+
+body {
+  min-width: 566px;
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Dancing Script", cursive;
+  font-size: 1.7rem;
+  font-weight: lighter;
+}
+
+/* Global Media Queries */
+@media screen and (max-width: 1160px) {
+  body {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 910px) {
+  body {
+    font-size: 1.3rem;
+  }
+}
