@@ -9,12 +9,19 @@ header {
   text-align: center;
   color: $color-title;
   font-family: $font-title;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 
   h1 {
     text-shadow: 1px 1px 1px $color-title-shadow;
     font-size: 5rem;
     padding: 3rem 0;
+    justify-content: center;
+    align-self: center; /* Centrer horizontalement */
+    position: relative;
   }
+
 }
 
 nav {

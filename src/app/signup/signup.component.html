@@ -1,15 +1,20 @@
 <form (ngSubmit)="onSignup()">
-  <label for="firstname">First Name:</label>
-  <input type="text" id="firstname" [(ngModel)]="signupData.firstname" name="firstname" required>
 
-  <label for="lastname">Last Name:</label>
+  <label for="lastname">Nom:</label>
   <input type="text" id="lastname" [(ngModel)]="signupData.lastname" name="lastname" required>
+
+  <label for="firstname">Prénom:</label>
+  <input type="text" id="firstname" [(ngModel)]="signupData.firstname" name="firstname" required>
 
   <label for="email">Email:</label>
   <input type="email" id="email" [(ngModel)]="signupData.email" name="email" required>
 
-  <label for="password">Password:</label>
+  <label for="password">Mot de passe:</label>
   <input type="password" id="password" [(ngModel)]="signupData.password" name="password" required>
 
-  <button type="submit">Signup</button>
+  <label for="terms">J'accepte les conditions</label>
+  <label for="terms">générales de vente</label>
+  <input type="checkbox" id="terms" [(ngModel)]="signupData.acceptTerms" name="terms" required>
+
+  <button type="submit" [disabled]="!signupData.acceptTerms">S'inscrire</button>
 </form>

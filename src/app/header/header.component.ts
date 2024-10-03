@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
   constructor(private router: Router) { }
 
+
   navigateToHome() {
     this.router.navigate(['']);
   }
@@ -27,6 +28,5 @@ export class HeaderComponent {
   navigateToPhotos() {
     this.router.navigate(['/photos']);
   }
-
 }
 

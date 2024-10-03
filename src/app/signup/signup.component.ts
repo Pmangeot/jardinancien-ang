@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormsModule } from '@angular/forms';
+import { LegalComponent } from '../legal/legal.component';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, LegalComponent],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
-  signupData = { firstname: '', lastname: '', email: '', password: '' };
+  signupData = { firstname: '', lastname: '', email: '', password: '' , acceptTerms: false};
 
   constructor(private authService: AuthService) {}
 

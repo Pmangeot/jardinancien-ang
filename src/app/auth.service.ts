@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 })
 export class AuthService {
 
+  private isLoggedInFlag = false;
   private loginUrl: string = environment.api_url + environment.api_login;  // URL pour l'API de login
   private signupUrl = environment.api_url + environment.api_signup; // URL pour l'API d'inscription
   private tokenStorageKey = 'authTokens';
@@ -45,5 +46,9 @@ export class AuthService {
 
   clearTokens(): void {
     localStorage.removeItem(this.tokenStorageKey);
+  }
+
+  isLoggedIn(): boolean {
+    return this.isLoggedInFlag;
   }
 }

@@ -7,7 +7,6 @@ import { LegalComponent } from './legal/legal.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { PlantsoffComponent } from './plantsoff/plantsoff.component';
 
 
 export const routes: Routes = [
@@ -16,10 +15,12 @@ export const routes: Routes = [
     path: 'plants',
     component: PlantsComponent,
     children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'signup', component: SignupComponent },
-      { path: 'plantsoff', component:PlantsoffComponent }
-    ]
+      { path: 'login', component: LoginComponent,
+        children: [
+          { path: 'signup', component: SignupComponent
+
+          }]
+      }]
   },
   { path: 'conseils', component: TipsComponent },
   { path: 'photos', component: AlbumComponent },
