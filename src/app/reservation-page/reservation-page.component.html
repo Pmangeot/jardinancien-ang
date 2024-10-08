@@ -1,0 +1,57 @@
+<div class="mainContainer">
+  <article>
+    <nav>
+      <a (click)="navigateToAvailablePlants()" [class.active]="activeTab === 'availablePlants'">Plants disponibles</a>
+      <a (click)="navigateToMyReservation()" [class.active]="activeTab === 'myReservation'">Ma réservation</a>
+      <a (click)="navigateToMyAccount()" [class.active]="activeTab === 'myAccount'">Mon compte</a>
+    </nav>
+
+    <div id="item-container">
+
+      <div class="table-container">
+        <table matSort (matSortChange)="sortItems($event)">
+          <thead>
+            <tr>
+              <th style="width: 30%" mat-sort-header="name">Nom</th>
+              <th style="width: 50%" mat-sort-header="description">Description</th>
+              <th style="width: 20%" mat-sort-header="stock">Stock restant</th>
+              <th style="width: 10%">Quantité</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(item of items; track item.id){
+            <tr class="data-table-body-row clickable">
+              <td (click)="goToItem(item.id)">
+                <div class="first">
+                  {{ item.name }}
+                </div>
+              </td>
+              <td>
+                <div>{{ item.description }}</div>
+              </td>
+              <td>
+                <div>{{ item.stock }}</div>
+              </td>
+              <td>
+                <div class="quantity-selector">
+                  <button mat-icon-button (click)="decreaseQuantity(item)">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                  <p>{{item.quantity}}</p>
+                  <button mat-icon-button (click)="increaseQuantity(item)">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+
+  </article>
+</div>

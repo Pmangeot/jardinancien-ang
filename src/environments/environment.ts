@@ -1,7 +1,7 @@
 export const environment = {
 
   production: false,
-  api_url: '',
+  api_url: 'localhost:8000/api',
 
   api_login: '/users/login',
   api_signup: '/users/new',
