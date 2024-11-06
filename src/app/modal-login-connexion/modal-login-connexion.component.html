@@ -9,11 +9,13 @@
       </div>
       <div class="modal-body">
         <form *If="isLogin" (ngSubmit)="onLogin()">
-          <!-- Login form fields go here -->
+
           <button type="submit" class="btn btn-primary">Login</button>
         </form>
         <form *If="!isLogin" (ngSubmit)="onSignup()">
-          <!-- Signup form fields go here -->
+
+
+
           <button type="submit" class="btn btn-primary">Signup</button>
         </form>
       </div>

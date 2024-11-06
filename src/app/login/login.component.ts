@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormsModule } from '@angular/forms';
 
@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class LoginComponent {
   loginData = { username: '', password: '' };
+  @Output() loginSuccess = new EventEmitter<void>();
+
 
   constructor(private authService: AuthService) {}
 
@@ -19,6 +21,8 @@ export class LoginComponent {
       .subscribe({
         next: (tokens) => {
           console.log('Login successful, tokens:', tokens);
+          this.loginSuccess.emit();
+
           // Route vers la page principale ou autre logique après le login
           // Par exemple : this.router.navigate(['/dashboard']);
         },
@@ -27,5 +31,6 @@ export class LoginComponent {
           // Handle login error
         }
       });
+
   }
 }

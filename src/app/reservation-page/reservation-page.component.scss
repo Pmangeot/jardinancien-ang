@@ -3,8 +3,9 @@
 
 // main.component.scss
 .mainContainer {
-  width: 100%;
+  width: 100vw;
   padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
   background-image: url('../../assets/img/tomatoes.png');
   background-size: cover;
   background-repeat: no-repeat;
@@ -96,16 +97,20 @@
     border-collapse: collapse;
     margin: 2rem 1rem;
     & th {
-      background-color: #f2f2f2;
-      border: 1px solid #ddd;
+      background-color: #f2f2f25a;
+      border: 1px solid #bfb6b6;
       padding: 8px;
       text-align: center;
     }
-    &.mat-sort-header-content {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+
+  }
+
+  td {
+    border: 1px solid #bfb6b6;
+    height: 3rem;
+    text-align: center;
+
+
   }
 
 

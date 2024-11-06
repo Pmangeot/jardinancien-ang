@@ -55,6 +55,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return this.isLoggedInFlag;
+    const tokens = this.getTokens();
+    return tokens !== null && tokens.accessToken !== undefined;
   }
 }

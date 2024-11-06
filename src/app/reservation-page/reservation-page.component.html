@@ -7,51 +7,45 @@
     </nav>
 
     <div id="item-container">
+      <button [disabled]="!validateButtonEnabled">Valider</button>
 
       <div class="table-container">
-        <table matSort (matSortChange)="sortItems($event)">
+        <table>
           <thead>
             <tr>
-              <th style="width: 30%" mat-sort-header="name">Nom</th>
-              <th style="width: 50%" mat-sort-header="description">Description</th>
-              <th style="width: 20%" mat-sort-header="stock">Stock restant</th>
+              <th style="width: 30%">Nom</th>
+              <th style="width: 50%">Description</th>
+              <th style="width: 20%">Stock restant</th>
               <th style="width: 10%">Quantité</th>
             </tr>
           </thead>
 
           <tbody>
             @for(item of items; track item.id){
-            <tr class="data-table-body-row clickable">
-              <td (click)="goToItem(item.id)">
-                <div class="first">
-                  {{ item.name }}
-                </div>
-              </td>
-              <td>
-                <div>{{ item.description }}</div>
-              </td>
-              <td>
-                <div>{{ item.stock }}</div>
-              </td>
-              <td>
-                <div class="quantity-selector">
-                  <button mat-icon-button (click)="decreaseQuantity(item)">
-                    <mat-icon>remove</mat-icon>
-                  </button>
-                  <p>{{item.quantity}}</p>
-                  <button mat-icon-button (click)="increaseQuantity(item)">
-                    <mat-icon>add</mat-icon>
-                  </button>
-                </div>
-              </td>
-            </tr>
+              <tr class="data-table-body-row clickable">
+                <td>
+                  <div>
+                    {{ item.name }}
+                  </div>
+                </td>
+                <td>
+                  <div>{{ item.description }}</div>
+                </td>
+                <td>
+                  <div>{{ item.stock }}</div>
+                </td>
+                <td>
+                  <div class="quantity-selector">
+                    <button (click)="decreaseQuantity(item)">-</button>
+                    <p>{{ item.quantity }}</p>
+                    <button (click)="increaseQuantity(item)">+</button>
+                  </div>
+                </td>
+              </tr>
             }
           </tbody>
         </table>
       </div>
     </div>
-
-
-
   </article>
 </div>

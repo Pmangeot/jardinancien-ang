@@ -1,30 +1,31 @@
+@if(isLogin){
 
-<div class="mainContainer">
-  <article>
-    <div class="article_text">
+  <app-reservation-page></app-reservation-page>
 
 
-      @if(isLogin){
+}@else {
+  <div class="mainContainer">
+    <article>
+      <div class="article_text">
+          @if(!login){
+            <h2>Inscription</h2>
+            <app-signup></app-signup>
+            <label>Déjà inscrit: </label>
+            <button (click)="toggleForm()">Se connecter</button>
+            <p></p>
+          }@else {
+            <h2>Connexion</h2>
+            <app-login (loginSuccess)="onLoginSuccess()"></app-login>
+            <label>Pas encore inscrit: </label>
+            <button (click)="toggleForm()">Inscription</button>
+            <p></p>
+          }
 
-      }@else {
-        @if(!login){
-          <h2>Inscription</h2>
-          <app-signup></app-signup>
-          <label>Déjà inscrit: </label>
-          <button (click)="toggleForm()">Se connecter</button>
-          <p></p>
-        }@else {
-          <h2>Connexion</h2>
-          <app-login></app-login>
-          <label>Pas encore inscrit: </label>
-          <button (click)="toggleForm()">Inscription</button>
-          <p></p>
-        }
-      }
-    </div>
-    <p>Retrouvez-nous chaque printemps pour la vente de nos <strong>Plants Potagers !</strong></p>
-    <p>Nous utilisons des semences et du terreau labellisés <strong> Agriculture Biologique.</strong></p>
-    <p>Les plants sont semés et chouchoutés à la main, par nos soins.</p>
-    <p>Retrouvez toutes les variétés disponibles dans l'onglet Plants prochainement !</p>
-  </article>
-</div>
+      </div>
+      <p>Retrouvez-nous chaque printemps pour la vente de nos <strong>Plants Potagers !</strong></p>
+      <p>Nous utilisons des semences et du terreau labellisés <strong> Agriculture Biologique.</strong></p>
+      <p>Les plants sont semés et chouchoutés à la main, par nos soins.</p>
+      <p>Retrouvez toutes les variétés disponibles dans l'onglet Plants prochainement !</p>
+    </article>
+  </div>
+}
