@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
@@ -9,7 +9,8 @@ import { environment } from '../environments/environment';
 })
 export class AuthService {
 
-  private isLoggedInFlag = false;
+  private isLoggedInSubject = new BehaviorSubject<boolean>(false);
+  isLoggedIn$ = this.isLoggedInSubject.asObservable();
   private loginUrl: string = environment.api_url + environment.api_login;  // URL pour l'API de login
   private signupUrl = environment.api_url + environment.api_signup; // URL pour l'API d'inscription
   private tokenStorageKey = 'authTokens';
@@ -26,6 +27,7 @@ export class AuthService {
       .pipe(
         tap(tokens => {
           this.storeTokens(tokens);
+          this.isLoggedInSubject.next(true);
         }),
         catchError(error => {
           console.error('Error during login:', error);

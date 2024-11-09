@@ -5,6 +5,8 @@ import { LoginComponent } from '../login/login.component';
 import { RouterModule } from '@angular/router';
 import { ReservationPageComponent } from '../reservation-page/reservation-page.component';
 import { AuthService } from '../auth.service';
+import { Subscription } from 'rxjs';
+
 
 
 
@@ -16,27 +18,28 @@ import { AuthService } from '../auth.service';
   styleUrls: ['../../styles/reset.scss','../../styles/_variables.scss','./plants.component.scss']
 })
 
-export class PlantsComponent implements OnInit, OnChanges {
+export class PlantsComponent implements OnInit {
   isLogin = false;
   login = true;
+  private isLoggedInSubscription: Subscription;
 
   signupData = { firstname: '', lastname: '', email: '', password: '' };
   loginData = { email: '', password: '' };
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+    this.isLoggedInSubscription = this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLogin = isLoggedIn;
+      console.log('isLogin:', this.isLogin);
+    });
+  }
+
 
 
   ngOnInit() {
-    this.checkLoginStatus();
-  }
-
-  ngOnChanges() {
-    this.checkLoginStatus();
-  }
-
-  checkLoginStatus() {
-    this.isLogin = this.authService.isLoggedIn();
-    console.log('isLogin:', this.isLogin);
+    this.isLoggedInSubscription = this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLogin = isLoggedIn;
+      console.log('isLogin:', this.isLogin);
+    });
   }
 
   onLoginSuccess(): void {
