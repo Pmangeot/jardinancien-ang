@@ -4,6 +4,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
+import { ReservationService } from '../reservation-service.service';
+
 
 @Component({
   selector: 'app-reservation-page',
@@ -29,6 +31,21 @@ export class ReservationPageComponent {
   items = [...this.originalItems];
   validateButtonEnabled = false;
 
+  constructor(private reservationService: ReservationService) {
+    const storedItems = this.reservationService.getItems();
+    if (storedItems.length > 0) {
+      this.items = storedItems;
+      // Update originalItems with item.quantity values from items
+      this.originalItems.forEach(item => {
+        const storedItem = this.items.find(storedItem => storedItem.id === item.id);
+        if (storedItem) {
+          item.quantity = storedItem.quantity;
+        }
+      });
+    } else {
+      this.items = [...this.originalItems];
+    }
+  }
 
   filteredItems() {
     return this.items.filter(item => item.quantity > 0);
@@ -67,6 +84,7 @@ export class ReservationPageComponent {
   navigateToAvailablePlants() {
     this.activeTab = 'availablePlants';
     this.items = [...this.originalItems];
+    this.reservationService.setItems(this.items);
     this.validateButtonEnabled = false;
 
     // navigate to available plants page
@@ -75,6 +93,7 @@ export class ReservationPageComponent {
   navigateToMyReservation() {
     this.activeTab = 'myReservation';
     this.items = this.originalItems.filter(item => item.quantity > 0);
+    this.reservationService.setItems(this.items);
     this.validateButtonEnabled = true;
     // navigate to my reservation page
   }
